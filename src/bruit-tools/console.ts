@@ -1,8 +1,8 @@
-import { HttpTool } from './http';
-import { UrlTool } from './url';
-import { ClickTool } from './click';
 import { BrtLog, BrtLogCacheLength } from '@bruit/types';
 import { BrtLogType } from '@bruit/types/dist/enums/brt-log-type';
+import { ClickTool } from './click';
+import { HttpTool } from './http';
+import { UrlTool } from './url';
 
 export class ConsoleTool {
   private static brtLogCacheLength: BrtLogCacheLength;
@@ -19,6 +19,18 @@ export class ConsoleTool {
       console.info('BRUIT.IO - logs reports are disabled in localhost mode');
     } else {
       (<any>console).overloadable = true;
+      // if ('SharedWorker' in window) {
+      //   navigator.serviceWorker.register('/service-worker.js', { scope: '/bruit.io' });
+      // }
+      //check for support
+      if ('indexedDB' in window && 'SharedWorker' in window) {
+        //check for free space
+        //     NavigatorTool.getStorageInformation().then(storageInformation=>{
+        //       if(storageInformation && storageInformation.quota && storageInformation.usage >= 0 && 100 / (storageInformation.quota / storageInformation.usage) >= 50){
+        // // check for unique instance
+        //       }
+        //     })
+      }
     }
     ConsoleTool.brtLogCacheLength = brtLogCacheLengthConfig;
     ConsoleTool.configure();

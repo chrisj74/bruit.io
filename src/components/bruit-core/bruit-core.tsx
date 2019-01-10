@@ -107,6 +107,9 @@ export class BruitCore {
     // console.info('[BRUIT.IO] - bruit started ...');
     // first init
     this.initConfig(this.config);
+    if ('SharedWorker' in window) {
+      navigator.serviceWorker.register('/service-worker.js', { scope: '/bruit.io' });
+    }
   }
 
   /**
