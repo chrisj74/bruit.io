@@ -18,7 +18,7 @@ export const config: Config = {
     { src: 'init.js', dest: './../init.js' },
     { src: 'core.js', dest: './../core.js' },
     { src: 'appendCore.js', dest: './../appendCore.js' },
-    { src: 'bruit-sw.js', dest: './bruit-sw.js' }
+    { src: 'service-worker.js', dest: './../service-worker.js' }
   ],
   plugins: [sass()],
   hashFileNames: false

@@ -107,9 +107,9 @@ export class BruitCore {
     // console.info('[BRUIT.IO] - bruit started ...');
     // first init
     this.initConfig(this.config);
-    if ('SharedWorker' in window) {
-      navigator.serviceWorker.register('/service-worker.js', { scope: '/bruit.io' });
-    }
+    // if ('SharedWorker' in window) {
+    //   navigator.serviceWorker.register('/service-worker.js', { scope: '/bruit.io' });
+    // }
   }
 
   /**
@@ -188,7 +188,6 @@ export class BruitCore {
       });
   }
 
-  @Method()
   static async send(apiKey, agreement, data, dataFn) {
     if (!apiKey) {
       console.error('[BRUIT] apiKey must be defined !');

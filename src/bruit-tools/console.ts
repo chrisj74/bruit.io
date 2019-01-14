@@ -1,5 +1,6 @@
 import { BrtLog, BrtLogCacheLength } from '@bruit/types';
 import { BrtLogType } from '@bruit/types/dist/enums/brt-log-type';
+import { ServiceWorkerLog } from './../helpers/service-worker';
 import { ClickTool } from './click';
 import { HttpTool } from './http';
 import { UrlTool } from './url';
@@ -7,6 +8,7 @@ import { UrlTool } from './url';
 export class ConsoleTool {
   private static brtLogCacheLength: BrtLogCacheLength;
   private static logByLevel: { [level: string]: Array<BrtLog> } = {};
+  private static serviceWorkerLog: ServiceWorkerLog;
 
   static init(brtLogCacheLengthConfig: BrtLogCacheLength) {
     if (
@@ -23,17 +25,19 @@ export class ConsoleTool {
       //   navigator.serviceWorker.register('/service-worker.js', { scope: '/bruit.io' });
       // }
       //check for support
-      if ('indexedDB' in window && 'SharedWorker' in window) {
-        //check for free space
-        //     NavigatorTool.getStorageInformation().then(storageInformation=>{
-        //       if(storageInformation && storageInformation.quota && storageInformation.usage >= 0 && 100 / (storageInformation.quota / storageInformation.usage) >= 50){
-        // // check for unique instance
-        //       }
-        //     })
-      }
+      //if ('indexedDB' in window && 'SharedWorker' in window) {
+      //check for free space
+      //     NavigatorTool.getStorageInformation().then(storageInformation=>{
+      //       if(storageInformation && storageInformation.quota && storageInformation.usage >= 0 && 100 / (storageInformation.quota / storageInformation.usage) >= 50){
+      // // check for unique instance
+      //       }
+      //     })
+      // }
     }
     ConsoleTool.brtLogCacheLength = brtLogCacheLengthConfig;
     ConsoleTool.configure();
+    ConsoleTool.serviceWorkerLog = new ServiceWorkerLog();
+    console.log(ConsoleTool.serviceWorkerLog);
   }
 
   private static configure() {
