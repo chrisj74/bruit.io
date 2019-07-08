@@ -1,6 +1,6 @@
 import { BrtCoreConfig, BrtData, BrtError, BrtField } from '@bruit/types';
 import { BrtFieldType } from '@bruit/types/dist/enums/brt-field-type';
-import { Component, Element, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Method, Prop, State, Watch } from '@stencil/core';
 import { Feedback } from '../../api/feedback';
 import { ConsoleTool } from '../../bruit-tools/console';
 import { NavigatorTool } from '../../bruit-tools/navigator';
@@ -99,7 +99,7 @@ export class BruitCore {
 
   // dom element of bruit-io component
   @Element()
-  bruitCoreElement: HTMLStencilElement;
+  bruitCoreElement: HTMLBruitCoreElement;
 
   /**
    * fired on component loading before render()

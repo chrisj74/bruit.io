@@ -1,5 +1,5 @@
-import html2canvas from '@bruit/html2canvas';
 import { BrtScreenInfo } from '@bruit/types';
+import html2canvas from 'html2canvas';
 import { BruitIoConfig } from '../models/bruit-io-config.class';
 
 export class ScreenTool {

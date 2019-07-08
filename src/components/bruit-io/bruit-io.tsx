@@ -1,5 +1,5 @@
 import { BrtConfig, BrtCoreConfig, BrtData, BrtError } from '@bruit/types';
-import { Component, Element, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Method, Prop, State, Watch } from '@stencil/core';
 import { BruitIoConfig } from '../../models/bruit-io-config.class';
 import { appendCore } from './../../appendCore';
 @Component({
@@ -84,7 +84,7 @@ export class BruitIo {
 
   // dom element of bruit-io component
   @Element()
-  bruitIoElement: HTMLStencilElement;
+  bruitIoElement: HTMLBruitIoElement;
   private _haveInnerElement: boolean;
 
   /**

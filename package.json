@@ -30,11 +30,11 @@
     "postpublish": "node script/log-update-db.js"
   },
   "devDependencies": {
-    "@stencil/core": "0.18.1",
-    "@stencil/sass": "^0.1.1",
-    "tslint": "^5.12.1",
+    "@stencil/core": "1.1.5",
+    "@stencil/sass": "1.0.1",
     "chalk": "^2.4.2",
-    "edit-json-file": "^1.2.1"
+    "edit-json-file": "^1.2.1",
+    "tslint": "^5.18.0"
   },
   "repository": {
     "type": "git",
@@ -52,7 +52,7 @@
   },
   "homepage": "https://bruit.io/",
   "dependencies": {
-    "@bruit/html2canvas": "1.0.0-alpha.12.bruit",
+    "html2canvas": "1.0.0-rc.3",
     "@bruit/types": ">=0.2.26",
     "bowser": "^2.4.0",
     "lz-string": "^1.4.4"
