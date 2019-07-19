@@ -114,6 +114,7 @@ export class BruitIo {
     if (Bruit.bruitModalElement) {
       Bruit.bruitModalElement.open(this._config, this.data, this.dataFn);
     } else {
+      console.error('modal not setted...', Bruit.bruitModalElement);
       //error?
     }
   }
