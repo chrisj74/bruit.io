@@ -8,6 +8,7 @@
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
   BrtConfig,
+  BrtCoreConfig,
   BrtData,
 } from '@bruit/types';
 
@@ -24,6 +25,7 @@ export namespace Components {
     'dataFn': () => Array<BrtData> | Promise<Array<BrtData>>;
   }
   interface BruitModal {
+    'config': BrtCoreConfig | string;
     /**
     * called on click on bruit-io init a feedback, wait user submit, send feedback
     */
@@ -81,6 +83,7 @@ declare namespace LocalJSX {
     'onOnError'?: (event: CustomEvent<any>) => void;
   }
   interface BruitModal extends JSXBase.HTMLAttributes<HTMLBruitModalElement> {
+    'config'?: BrtCoreConfig | string;
     /**
     * emit bruit-error on internal error or config error ex : BruitIo.addEventListener('onError',error=>...)
     */

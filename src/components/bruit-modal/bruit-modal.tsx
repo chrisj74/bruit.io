@@ -1,16 +1,58 @@
-import { BrtConfig, BrtData, BrtError, BrtField } from '@bruit/types';
+import { Bruit } from '@bruit/core/dist/lib/bruit';
+import { BrtConfig, BrtCoreConfig, BrtData, BrtError, BrtField } from '@bruit/types';
 import { BrtFieldType } from '@bruit/types/dist/enums/brt-field-type';
-import { Component, Element, Event, EventEmitter, h, Method, State } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Method, Prop, State, Watch } from '@stencil/core';
 import { SubmitButtonState } from '../../enums/submitButtonState.enum';
 import { BruitIoConfig } from '../../models/bruit-io-config.class';
 
-declare const Bruit: any;
+
+
 @Component({
   tag: 'bruit-modal',
   styleUrl: 'bruit-modal.scss',
   shadow: false // set to true when all browser support shadowDom
 })
 export class BruitModal {
+
+  // configuration
+  @Prop({ attr: 'brt-config' })
+  config: BrtCoreConfig | string;
+
+  /**
+   * test validity of config and assign to internal config
+   * @param newConfig the new value of config
+   */
+  @Watch('config')
+  initConfig(newConfig: BrtCoreConfig | string) {
+    let _newConfig: BrtCoreConfig;
+    let configError: BrtError | void;
+    if (newConfig) {
+      if (typeof newConfig === 'string') {
+        try {
+          _newConfig = JSON.parse(newConfig) as BrtCoreConfig;
+        } catch {
+          configError = {
+            code: 100,
+            text: 'bad config format (must be a json or stringified json)'
+          };
+        }
+      } else {
+        _newConfig = newConfig as BrtCoreConfig;
+      }
+    }
+    if (!configError) {
+      try {
+        Bruit.init(_newConfig);
+      } catch (error) {
+        this.onError.emit(error);
+        console.error(error);
+      }
+    } else {
+      this.onError.emit(configError);
+      console.error(configError);
+    }
+  }
+
 
 
   // TODO: Issue https://github.com/ionic-team/stencil/issues/724
@@ -66,6 +108,8 @@ export class BruitModal {
    */
   componentWillLoad() {
     console.info('[BRUIT.IO] - bruit started ...');
+    // first init
+    this.initConfig(this.config);
   }
 
 

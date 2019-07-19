@@ -1,6 +1,6 @@
 {
   "name": "@bruit/component",
-  "version": "2.0.12-plop",
+  "version": "2.0.14-plop",
   "description": "send your feedbacks with bruit.io",
   "keywords": [
     "bruit",
@@ -51,6 +51,7 @@
   },
   "homepage": "https://bruit.io/",
   "dependencies": {
-    "@bruit/types": "0.3.2-2"
+    "@bruit/types": "0.3.2-2",
+    "@bruit/core": "2.0.13-plop"
   }
 }
