@@ -27,7 +27,8 @@
     "start": "stencil build --dev --watch --serve --port 3332",
     "docs": "stencil build --docs",
     "prepublishOnly": "npm i && npm run build && node script/git-tag",
-    "postpublish": "node script/log-update-db.js"
+    "postpublish": "node script/log-update-db.js",
+    "prepare": "npm run build"
   },
   "devDependencies": {
     "@stencil/core": "0.18.0",
